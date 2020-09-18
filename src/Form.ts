@@ -1,6 +1,6 @@
 import { TSMap } from 'typescript-map'
 import { Field } from '../src/fields/Field';
-import { LocStorage } from './locStorage';
+import { LocStorage } from './LocStorage';
 import { InputField } from '../src/fields/InputField';
 import { TextAreaField } from '../src/fields/TextAreaField';
 import { EmailField } from '../src/fields/EmailField';
@@ -9,7 +9,8 @@ import { DateField } from '../src/fields/DateField';
 import { CheckboxField } from '../src/fields/CheckboxField';
 
 export class Form {
-  fields: Field[] = [new DateField("Data formularza"), new SelectField("Wykształcenie", ["Podstawowe", "Średnie", "Wyższe"]), new InputField("Ulubiony kolor"), new InputField("Wiek"), new EmailField("Email"), new CheckboxField("Czy czytasz książki?"), new TextAreaField("Uwagi")];
+  ID: string;
+  fields: Field[] = [new SelectField("Wykształcenie", ["Podstawowe", "Średnie", "Wyższe"]), new InputField("Ulubiony kolor"), new InputField("Wiek"), new EmailField("Email"), new CheckboxField("Czy czytasz książki?"), new TextAreaField("Uwagi"), new DateField("Data formularza")];
 
   render(): any {
     const div = document.getElementById("main");
@@ -18,9 +19,11 @@ export class Form {
 
 
     backButton.setAttribute("id", "back");
+    backButton.setAttribute("class", "btn btn-dark");
     backButton.innerHTML = "Back"
 
     saveButton.setAttribute("id", "save");
+    saveButton.setAttribute("class", "btn btn-dark");
     saveButton.innerHTML = "Save"
 
     for (let i = 0; i < this.fields.length; i++) {

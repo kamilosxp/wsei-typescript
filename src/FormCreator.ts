@@ -1,11 +1,13 @@
+import { Field } from "./fields/Field";
+import { LocStorage } from "./LocStorage";
 import { Guid } from "guid-typescript";
-import { LocStorage } from './LocStorage'
 
-export class DocumentList {
+export class FormCreator {
+    fields: Field[];
 
     documents: Map<string, string>;
 
-    getDocumentList() {
+    getFormList() {
 
         let locStorage = new LocStorage();
         let array = locStorage.getDocuments();
@@ -19,13 +21,13 @@ export class DocumentList {
         this.documents = map;
     }
 
-    getDocument(id: string) {
+    getForm(id: string) {
         return JSON.parse(localStorage.getItem(id));
     }
 
 
     render() {
-        this.getDocumentList();
+        this.getFormList();
         let docList = "";
 
         this.documents.forEach((value, key) => {
@@ -38,12 +40,23 @@ export class DocumentList {
                 body += "<td scrope='row'>" + Json[k] + "</td>";
             });
 
-            let str = "<button class='btn btn-dark edit' docID='" + key + "'>Edytuj</button><button class='btn btn-dark delete' docID='" + key + "'>Usuń</button><table class='table' id='" + key + "'><tr><th>id</th>" + head + "</tr><tr><td>" +
+            let str = "<button class='btn btn-dark delete' docID='" + key + "'>Usuń</button><table class='table' id='" + key + "'><tr><th>id</th>" + head + "</tr><tr><td>" +
                 key + "</td>" + body + "</tr></table>"
                 docList += str;
 
             document.getElementById("documents").innerHTML = docList;
 
         });
+    }
+
+    newForm(): any {
+
+    }
+
+
+    saveForm(): any {
+        let locStorage = new LocStorage();
+        //locStorage.saveDocument(this.getValue());
+        window.location.href = "index.html";
     }
 }
