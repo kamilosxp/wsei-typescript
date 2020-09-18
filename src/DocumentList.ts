@@ -30,16 +30,16 @@ export class DocumentList {
 
         this.documents.forEach((value, key) => {
             let Json = JSON.parse(JSON.parse(value));
-            let head = "";
-            let body = "";
+            let nav = "";
+            let data = "";
 
             Object.keys(Json).forEach(function (k) {
-                head += "<th scope='col'>" + k + "</th>";
-                body += "<td scrope='row'>" + Json[k] + "</td>";
+                nav += "<th scope='col'>" + k + "</th>";
+                data += "<td scrope='row'>" + Json[k] + "</td>";
             });
 
-            let str = "<button class='btn btn-dark edit' docID='" + key + "'>Edytuj</button><button class='btn btn-dark delete' docID='" + key + "'>Usuń</button><table class='table' id='" + key + "'><tr><th>id</th>" + head + "</tr><tr><td>" +
-                key + "</td>" + body + "</tr></table>"
+            let str = "<button class='btn btn-dark edit' docID='" + key + "'>Edytuj</button><button class='btn btn-dark delete' docID='" + key + "'>Usuń</button><table class='table' id='" + key + "'><tr><th>id</th>" + nav + "</tr><tr><td>" +
+                key + "</td>" + data + "</tr></table>"
                 docList += str;
 
             document.getElementById("documents").innerHTML = docList;
